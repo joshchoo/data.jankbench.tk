@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JankBench Data</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" />
+</head>
+
+<body>
+    <h1>JankBench Data</h1>
+    <h2><button id="reset">Reset »</button></h2>
+
+    <div class="container">
+        <div id="content">
+            <table id="table1" class="display nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th data-priority="1">Name</th>
+                        <th data-priority="6">Model</th>
+                        <th data-priority="8">Board</th>
+                        <th data-priority="1">Test</th>
+                        <th data-priority="1">Score</th>
+                        <th data-priority="1">Jank %</th>
+                        <th data-priority="1">Bad frames %</th>
+                        <th data-priority="90">Kernel</th>
+                        <th data-priority="100">Fingerprint</th>
+                        <th data-priority="10">Timestamp</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <!--Reference to jQuery-->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#reset").click(function (e) {
+                location.reload();
+            });
+
+            var table = $('#table1').DataTable({
+                "ajax": {
+                    "url": "https://api.jankbench.tk/v1/results",
+                    "dataSrc": "results"
+                },
+                "columns": [
+                    { "data": "device.device_name" },
+                    { "data": "device.device_model" },
+                    { "data": "device.device_board" },
+                    { "data": "test_name" },
+                    { "data": "score" },
+                    { "data": "jank_pct" },
+                    { "data": "bad_frame_pct" },
+                    { "data": "device.kernel_version" },
+                    { "data": "device.fingerprint" },
+                    { "data": "device.timestamp" },
+                    { "defaultContent": ""},
+                ],
+                "pageLength": 50,
+                "order": [[9, 'desc']],
+                responsive: {
+                    details: {
+                        type: 'column',
+                        target: -1
+                    }
+                },
+                columnDefs: [{
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                }],
+            });
+
+            new $.fn.dataTable.FixedHeader( table );
+        });
+    </script>
+</body>
+
+</html>
