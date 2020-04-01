@@ -2,18 +2,34 @@
 <html>
 
 <head>
-    <title>JankBench Data</title>
+    <title>JankBenchX Data</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.1/css/bulma.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" />
 </head>
 
-<body>
-    <h1>JankBench Data</h1>
-    <h2><button id="reset">Reset »</button></h2>
+<header class="content">
+    <nav class="level">
+        <div class="level-item">
+            <h1 class="title is-2">JankBenchX Data</h1>
+        </div>
+    </nav>
+    <nav class="level">
+        <div class="level-item">
+            <a class="button is-link is-outlined" href="https://github.com/joshuous/JankBenchX/releases"
+                rel="noopener noreferrer" target="_blank">
+                <strong>Download JankBenchX</strong>
+            </a>
+        </div>
+    </nav>
+</header>
 
-    <div class="container">
+<body>
+    <div class="container is-fullhd">
         <div id="content">
             <table id="table1" class="display nowrap" style="width:100%">
                 <thead>
@@ -37,9 +53,12 @@
 
     <!--Reference to jQuery-->
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -63,7 +82,7 @@
                     { "data": "device.kernel_version" },
                     { "data": "device.fingerprint" },
                     { "data": "device.timestamp" },
-                    { "defaultContent": ""},
+                    { "defaultContent": "" },
                 ],
                 "pageLength": 50,
                 "order": [[9, 'desc']],
@@ -80,7 +99,7 @@
                 }],
             });
 
-            new $.fn.dataTable.FixedHeader( table );
+            new $.fn.dataTable.FixedHeader(table);
         });
     </script>
 </body>
