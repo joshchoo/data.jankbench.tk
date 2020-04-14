@@ -12,6 +12,13 @@
         href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/rowgroup/1.1.1/css/rowGroup.dataTables.min.css" />
+    <style>
+        .row-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    </style>
 </head>
 
 <header class="content">
@@ -76,22 +83,40 @@
                     "dataSrc": "results"
                 },
                 "columns": [
-                    { "data": "device.device_name" },
-                    { "data": "device.device_model" },
-                    { "data": "device.device_board" },
+                    { "data": "device.device_name", "visible": false },
+                    { "data": "device.device_model", "visible": false },
+                    { "data": "device.device_board", "visible": false },
                     { "data": "test_name" },
                     { "data": "score" },
                     { "data": "jank_pct" },
                     { "data": "bad_frame_pct" },
                     { "data": "device.kernel_version" },
                     { "data": "device.fingerprint" },
-                    { "data": "device.timestamp" },
+                    { "data": "device.timestamp", "visible": false },
                     { "defaultContent": "" },
                 ],
                 "pageLength": 100,
                 "order": [[9, 'desc']],
                 rowGroup: {
                     dataSrc: 'device.timestamp'
+                },
+                rowGroup: {
+                    startRender: function (rows, group) {
+                        var name = rows.data().pluck('device').pluck('device_name')[0];
+                        var model = rows.data().pluck('device').pluck('device_model')[0];
+                        var board = rows.data().pluck('device').pluck('device_board')[0];
+                        var kernel = rows.data().pluck('device').pluck('kernel_version')[0] || '';
+                        var kernelRegex = /^.{0,19}([^\s]+)/;
+                        if (kernel) {
+                            var found = kernel.match(kernelRegex)
+                            if (found) kernel = found[0]
+                        }
+
+                        return $('<tr/>')
+                            .append(`<td colspan="7"><div class="row-group"><span>${model} - ${name} (${board}) ${kernel && '- ' + kernel}</span><span>${group.slice(0, 19)}</span></div></td>`)
+                    },
+                    endRender: null,
+                    dataSrc: "device.timestamp"
                 },
                 responsive: {
                     details: {
