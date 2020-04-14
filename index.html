@@ -111,7 +111,7 @@
                         var model = rows.data().pluck('device').pluck('device_model')[0];
                         var board = rows.data().pluck('device').pluck('device_board')[0];
                         var kernel = rows.data().pluck('device').pluck('kernel_version')[0] || '';
-                        var kernelRegex = /^.{0,19}([^\s]+)/;
+                        var kernelRegex = /[0-9]([^\s]+)/;
                         if (kernel) {
                             var found = kernel.match(kernelRegex)
                             if (found) kernel = found[0]
