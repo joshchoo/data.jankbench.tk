@@ -10,6 +10,8 @@
         href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/rowgroup/1.1.1/css/rowGroup.dataTables.min.css" />
 </head>
 
 <header class="content">
@@ -59,6 +61,8 @@
         src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" language="javascript"
         src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/rowgroup/1.1.1/js/dataTables.rowGroup.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -86,6 +90,9 @@
                 ],
                 "pageLength": 50,
                 "order": [[9, 'desc']],
+                rowGroup: {
+                    dataSrc: 'device.timestamp'
+                },
                 responsive: {
                     details: {
                         type: 'column',
