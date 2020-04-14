@@ -35,10 +35,15 @@
             </a>
         </div>
     </nav>
+    <nav class="level">
+        <div class="level-item">
+            <button id="reset" class="button is-dark">Reset</button>
+        </div>
+    </nav>
 </header>
 
 <body>
-    <div class="container is-fullhd">
+    <div class="container is-touch">
         <div id="content">
             <table id="table1" class="display nowrap" style="width:100%">
                 <thead>
@@ -47,9 +52,9 @@
                         <th data-priority="6">Model</th>
                         <th data-priority="8">Board</th>
                         <th data-priority="1">Test</th>
-                        <th data-priority="1">Score</th>
-                        <th data-priority="1">Jank %</th>
-                        <th data-priority="1">Bad frames %</th>
+                        <th data-priority="1" class="centering">Score</th>
+                        <th data-priority="1" class="centering">Jank %</th>
+                        <th data-priority="1" class="centering">Bad frames %</th>
                         <th data-priority="90">Kernel</th>
                         <th data-priority="100">Fingerprint</th>
                         <th data-priority="10">Timestamp</th>
@@ -128,6 +133,10 @@
                     className: 'control',
                     orderable: false,
                     targets: -1
+                },
+                {
+                    targets: 'centering',
+                    className: 'dt-center'
                 }],
             });
 
